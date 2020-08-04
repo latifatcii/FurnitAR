@@ -69,10 +69,6 @@ extension FurnitARViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func selectObject(selected: String) {
-        selectedObject = selected
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedObject = objectNames[indexPath.item]
     }
@@ -88,6 +84,16 @@ extension FurnitARViewController: UICollectionViewDelegateFlowLayout {
 //MARK: GestureRecognizers
 extension FurnitARViewController {
     
+    func addItem(hitTestResult: ARHitTestResult) {
+        let objectScene = SCNScene(named: "art.scnassets/\(selectedObject).scn")
+        
+        if let objectNode = objectScene?.rootNode.childNode(withName: "\(selectedObject)", recursively: true) {
+            
+            objectNode.position = SCNVector3(x: hitTestResult.worldTransform.columns.3.x, y: hitTestResult.worldTransform.columns.3.y, z: hitTestResult.worldTransform.columns.3.z)
+            sceneView.scene.rootNode.addChildNode(objectNode)
+            objectsArray.append(objectNode)
+        }
+    }
     
     fileprivate func addGestureRecognizers() {
         let longPressGeastureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(selectNode))
@@ -180,14 +186,4 @@ extension FurnitARViewController {
         }
     }
     
-    func addItem(hitTestResult: ARHitTestResult) {
-        let objectScene = SCNScene(named: "art.scnassets/\(selectedObject).scn")
-        
-        if let objectNode = objectScene?.rootNode.childNode(withName: "\(selectedObject)", recursively: true) {
-            
-            objectNode.position = SCNVector3(x: hitTestResult.worldTransform.columns.3.x, y: hitTestResult.worldTransform.columns.3.y, z: hitTestResult.worldTransform.columns.3.z)
-            sceneView.scene.rootNode.addChildNode(objectNode)
-            objectsArray.append(objectNode)
-        }
-    }
 }
