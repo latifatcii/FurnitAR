@@ -12,11 +12,14 @@ import ARKit
 
 class FurnitARViewController: UIViewController, ARSCNViewDelegate {
     
+    @IBOutlet weak var addObjectButton: UIButton!
     @IBOutlet var sceneView: ARSCNView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var objectVC: ObjectSelectionViewController?
     var selectedObject = "chair"
     var objectsArray = [SCNNode]()
     var objectNames = ["chair", "table", "shelf", "armchair"]
+    var selectedObjects = IndexSet()
     
     var selectedNode: SCNNode? {
         didSet {
@@ -32,8 +35,10 @@ class FurnitARViewController: UIViewController, ARSCNViewDelegate {
         
         addGestureRecognizers()
         
-        collectionView.register(UINib(nibName: "ItemCell", bundle: nil), forCellWithReuseIdentifier: "itemCell")
         
+    }
+    @IBAction func addObjectTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "showObjects", sender: addObjectButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,27 +63,20 @@ class FurnitARViewController: UIViewController, ARSCNViewDelegate {
     }
 }
 
-extension FurnitARViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+extension FurnitARViewController: ObjectSelectionViewControllerDelegate {
+    func virtualObjectSelectionViewController(_ selectionViewController: ObjectSelectionViewController, didSelectObject: String, indexPath: IndexPath) {
+        selectedObjects.insert(indexPath.row)
+        
+        selectedObject = didSelectObject
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as? ItemCell else { return UICollectionViewCell() }
-        cell.objectNameLabel.text = objectNames[indexPath.item]
-        return cell
+    func virtualObjectSelectionViewController(_ selectionViewController: ObjectSelectionViewController, didDeselectObject: String, indexPath: IndexPath) {
+        selectedObjects.remove(indexPath.row)
+        
+        print(didDeselectObject)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedObject = objectNames[indexPath.item]
-    }
-}
-
-extension FurnitARViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width / 3, height: collectionView.frame.height)
-    }
 }
 
 //MARK: GestureRecognizers
@@ -152,6 +150,7 @@ extension FurnitARViewController {
         
         if !hitTest.isEmpty {
             addItem(hitTestResult: hitTest.first!)
+            
         } else {
             return
         }
@@ -185,5 +184,30 @@ extension FurnitARViewController {
             }
         }
     }
+}
+
+extension FurnitARViewController: UIPopoverPresentationControllerDelegate {
+
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let popoverController = segue.destination.popoverPresentationController, let button = sender as? UIButton {
+            popoverController.delegate = self
+            popoverController.sourceView = button
+            popoverController.sourceRect = button.bounds
+        }
+
+        let objectSelectionVC = segue.destination as! ObjectSelectionViewController
+        objectVC = objectSelectionVC
+        objectVC?.selectedObjects = selectedObjects
+        objectVC?.delegate = self
+    }
+    
+    
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        objectVC = nil
+    }
 }

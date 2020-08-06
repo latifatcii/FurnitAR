@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F5A75EE24DADE14003E7862 /* ObjectSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A75ED24DADE14003E7862 /* ObjectSelectionViewController.swift */; };
 		7FFFBA3124CEF4EC00C6CFF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFBA3024CEF4EC00C6CFF5 /* AppDelegate.swift */; };
 		7FFFBA3324CEF4EC00C6CFF5 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FFFBA3224CEF4EC00C6CFF5 /* art.scnassets */; };
 		7FFFBA3524CEF4EC00C6CFF5 /* FurnitARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFBA3424CEF4EC00C6CFF5 /* FurnitARViewController.swift */; };
 		7FFFBA3824CEF4EC00C6CFF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FFFBA3624CEF4EC00C6CFF5 /* Main.storyboard */; };
 		7FFFBA3A24CEF4EE00C6CFF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FFFBA3924CEF4EE00C6CFF5 /* Assets.xcassets */; };
 		7FFFBA3D24CEF4EE00C6CFF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FFFBA3B24CEF4EE00C6CFF5 /* LaunchScreen.storyboard */; };
-		7FFFBA4624D163C200C6CFF5 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFBA4424D163C200C6CFF5 /* ItemCell.swift */; };
-		7FFFBA4724D163C200C6CFF5 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FFFBA4524D163C200C6CFF5 /* ItemCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F5A75ED24DADE14003E7862 /* ObjectSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSelectionViewController.swift; sourceTree = "<group>"; };
 		7FFFBA2D24CEF4EC00C6CFF5 /* FurnitAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FurnitAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FFFBA3024CEF4EC00C6CFF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FFFBA3224CEF4EC00C6CFF5 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -26,8 +26,6 @@
 		7FFFBA3924CEF4EE00C6CFF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FFFBA3C24CEF4EE00C6CFF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7FFFBA3E24CEF4EE00C6CFF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7FFFBA4424D163C200C6CFF5 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
-		7FFFBA4524D163C200C6CFF5 /* ItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,15 +39,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7F5A75EB24D93C3B003E7862 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7FFFBA4424D163C200C6CFF5 /* ItemCell.swift */,
-				7FFFBA4524D163C200C6CFF5 /* ItemCell.xib */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
 		7F5A75EC24D93C4C003E7862 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,8 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				7FFFBA3424CEF4EC00C6CFF5 /* FurnitARViewController.swift */,
+				7F5A75ED24DADE14003E7862 /* ObjectSelectionViewController.swift */,
 				7F5A75EC24D93C4C003E7862 /* Storyboards */,
-				7F5A75EB24D93C3B003E7862 /* Cells */,
 				7FFFBA3224CEF4EC00C6CFF5 /* art.scnassets */,
 				7FFFBA4824D174EF00C6CFF5 /* Extras */,
 			);
@@ -157,7 +146,6 @@
 			files = (
 				7FFFBA3324CEF4EC00C6CFF5 /* art.scnassets in Resources */,
 				7FFFBA3D24CEF4EE00C6CFF5 /* LaunchScreen.storyboard in Resources */,
-				7FFFBA4724D163C200C6CFF5 /* ItemCell.xib in Resources */,
 				7FFFBA3A24CEF4EE00C6CFF5 /* Assets.xcassets in Resources */,
 				7FFFBA3824CEF4EC00C6CFF5 /* Main.storyboard in Resources */,
 			);
@@ -172,7 +160,7 @@
 			files = (
 				7FFFBA3524CEF4EC00C6CFF5 /* FurnitARViewController.swift in Sources */,
 				7FFFBA3124CEF4EC00C6CFF5 /* AppDelegate.swift in Sources */,
-				7FFFBA4624D163C200C6CFF5 /* ItemCell.swift in Sources */,
+				7F5A75EE24DADE14003E7862 /* ObjectSelectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
